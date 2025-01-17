@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record BookData(
         @JsonAlias("title") String title,
-        @JsonAlias("language") String language
+        @JsonAlias("languages") String language,
+        AuthorData author
 ) {
 }

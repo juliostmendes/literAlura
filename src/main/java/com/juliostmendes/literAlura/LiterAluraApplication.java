@@ -1,6 +1,7 @@
 package com.juliostmendes.literAlura;
 
 import com.juliostmendes.literAlura.main.Main;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,9 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LiterAluraApplication implements CommandLineRunner {
 
 
-
-	//@Autowired
-	//private SerieRepository repositorio;
+	@Autowired
+	private Main main;
 
 	public static void main(String[] args) {
 		SpringApplication.run(LiterAluraApplication.class, args);
@@ -19,9 +19,6 @@ public class LiterAluraApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		//Main main = new Main(repositorio);
-
-		Main main = new Main();
 		main.showMenu();
 	}
 }

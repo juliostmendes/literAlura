@@ -11,14 +11,22 @@ public class Book {
 
     private String title;
 
-    @ManyToOne
-    private Author author;
+    private String language;
 
-    @Enumerated(EnumType.STRING)
-    private Language language;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id", nullable = false)
+    private Author author;
 
     public Book() {
     }
+
+    public Book(BookData bookData, Author author) {
+        this.title = bookData.title();
+        this.language = bookData.language();
+        this.author = author;
+    }
+
+    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -36,19 +44,19 @@ public class Book {
         this.title = title;
     }
 
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
     public Author getAuthor() {
         return author;
     }
 
     public void setAuthor(Author author) {
         this.author = author;
-    }
-
-    public Language getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(Language language) {
-        this.language = language;
     }
 }

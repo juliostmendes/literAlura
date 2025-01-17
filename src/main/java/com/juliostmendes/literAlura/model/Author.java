@@ -3,24 +3,31 @@ package com.juliostmendes.literAlura.model;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
 public class Author {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-    private Date birthYear;
-    private Date deathYear;
+    private int birthYear;
+    private int deathYear;
 
-    //@OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @OneToMany
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Book> books = new ArrayList<>();
 
     public Author() {
     }
+
+    public Author(AuthorData authorData) {
+        this.name = authorData.name();
+        this.birthYear = authorData.birthYear();
+        this.deathYear = authorData.deathYear();
+    }
+
+    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -38,19 +45,19 @@ public class Author {
         this.name = name;
     }
 
-    public Date getBirthYear() {
+    public int getBirthYear() {
         return birthYear;
     }
 
-    public void setBirthYear(Date birthYear) {
+    public void setBirthYear(int birthYear) {
         this.birthYear = birthYear;
     }
 
-    public Date getDeathYear() {
+    public int getDeathYear() {
         return deathYear;
     }
 
-    public void setDeathYear(Date deathYear) {
+    public void setDeathYear(int deathYear) {
         this.deathYear = deathYear;
     }
 
